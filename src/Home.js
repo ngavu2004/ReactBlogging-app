@@ -9,6 +9,10 @@ const Home = () => {
         // npx json-server --watch data/db.json --port 8000
         fetch("http://localhost:8000/blogs")
             .then(res => {
+                if (!res.ok) {
+                    // Throw the error and it will be caught in the code below and printed the message out
+                    throw Error('could not fetch the data for that resource');
+                }
                 return res.json();
             })
             .then((data) => {
