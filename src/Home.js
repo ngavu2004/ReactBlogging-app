@@ -4,7 +4,7 @@ import BlogList from "./BlogList";
 const Home = () => {
     const [blogs, setBlogs] = useState(null);
     const [isPending, setIsPending] = useState(true);
-
+    const [error, setError] = useState(null);
     useEffect(() => {
         // npx json-server --watch data/db.json --port 8000
         fetch("http://localhost:8000/blogs")
@@ -18,15 +18,20 @@ const Home = () => {
             .then((data) => {
                 console.log(data);
                 setBlogs(data);
-                setIsPending(false)})
+                setIsPending(false);
+                setError(null);
+            })
             .catch(err => {
-                console.log(err.message);
+                setError(err.message);
+                setIsPending(false);
+                
             });
     }, [])
 
     return (  
         <div className="home">
             {/* If the below condition is false, the part after && wont work */}
+            {error && <div>{error}</div>}
             {isPending && <div>Loading...</div>}
             {blogs && <BlogList blogs={blogs} title="All blogs"/>}
             
