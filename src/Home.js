@@ -1,32 +1,10 @@
 import { useState, useEffect } from "react";
 import BlogList from "./BlogList";
+import useFetch from "./useFetch";
 
 const Home = () => {
-    const [blogs, setBlogs] = useState(null);
-    const [isPending, setIsPending] = useState(true);
-    const [error, setError] = useState(null);
-    useEffect(() => {
-        // npx json-server --watch data/db.json --port 8000
-        fetch("http://localhost:8000/blogs")
-            .then(res => {
-                if (!res.ok) {
-                    // Throw the error and it will be caught in the code below and printed the message out
-                    throw Error('could not fetch the data for that resource');
-                }
-                return res.json();
-            })
-            .then((data) => {
-                console.log(data);
-                setBlogs(data);
-                setIsPending(false);
-                setError(null);
-            })
-            .catch(err => {
-                setError(err.message);
-                setIsPending(false);
-                
-            });
-    }, [])
+    const {data: blogs,isPending,error} = useFetch("http://localhost:8000/blogs");
+    
 
     return (  
         <div className="home">
