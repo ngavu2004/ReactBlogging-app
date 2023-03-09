@@ -14,10 +14,9 @@ const Home = () => {
             .then((data) => {
                 console.log(data);
                 setBlogs(data);
-                setIsPending(false)
+                setIsPending(false)})
             .catch(err => {
                 console.log(err.message);
-            })
             });
     }, [])
 
