@@ -3,29 +3,30 @@ import BlogList from "./BlogList";
 
 const Home = () => {
     const [blogs, setBlogs] = useState(null);
-
-    const handleDelete = (id) => {
-        const newBlogs = blogs.filter(blog => blog.id !== id);
-        setBlogs(newBlogs);
-    }
-
-    const [name, setName] = useState('mario');
+    const [isPending, setIsPending] = useState(true);
 
     useEffect(() => {
+        // npx json-server --watch data/db.json --port 8000
         fetch("http://localhost:8000/blogs")
             .then(res => {
                 return res.json();
             })
             .then((data) => {
                 console.log(data);
+                setBlogs(data);
+                setIsPending(false)
+            .catch(err => {
+                console.log(err.message);
             })
-    }, [name])
+            });
+    }, [])
 
     return (  
         <div className="home">
-            <BlogList blogs={blogs} title="All blogs" handleDelete={handleDelete}/>
-            <button onClick={() => setName('luigi')}>Change name</button>
-            <p>{name}</p>
+            {/* If the below condition is false, the part after && wont work */}
+            {isPending && <div>Loading...</div>}
+            {blogs && <BlogList blogs={blogs} title="All blogs"/>}
+            
         </div>
     );
 }
