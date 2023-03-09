@@ -1,9 +1,12 @@
 import { useState } from "react";
+import { useHistory } from "react-router-dom";
+
 const Create = () => {
     const [title, setTitle] = useState('hello');
     const [body, setBody] = useState('hello');
     const [author, setAuthor] = useState('mario');
     const [isPending,setIsPending] = useState(false);
+    const history = useHistory();
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -16,7 +19,12 @@ const Create = () => {
         }).then(() => {
             console.log('new blog added');
             setIsPending(false);
+            // go back or forth how many page in history
+            // history.go(-1);
+            // Go to a specific route
+            history.push('/');
         })
+        
     }
     return (  
         <div className="create">
