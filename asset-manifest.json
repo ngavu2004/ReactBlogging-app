@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/ReactBlogging-app/static/css/main.f1302bb2.css",
+    "main.js": "/ReactBlogging-app/static/js/main.1f952670.js",
+    "index.html": "/ReactBlogging-app/index.html",
+    "main.f1302bb2.css.map": "/ReactBlogging-app/static/css/main.f1302bb2.css.map",
+    "main.1f952670.js.map": "/ReactBlogging-app/static/js/main.1f952670.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.f1302bb2.css",
+    "static/js/main.1f952670.js"
+  ]
+}
