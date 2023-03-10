@@ -41,7 +41,7 @@ const Create = () => {
                 <textarea 
                     value={body}
                     required
-                    onChange={(e) => setBodye.target.value}
+                    onChange={(e) => setBody.target.value}
                 ></textarea>
                 <label>Blog author:</label>
                 <select
